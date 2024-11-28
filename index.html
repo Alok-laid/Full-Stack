@@ -3,11 +3,15 @@
         <title> </title>
     </head>
     <script>
-        function addFn() {
+        async function addFn() {
             const a = document.getElementById("firstNumber").value;
             const b = document.getElementById("secondNumber").value;
-            const result = document.getElementById("container");
-            result.innerHTML = parseInt(a) + parseInt(b);
+
+            const response = await fetch(
+                "http://localhost:3000/sum?a=" + a + "&b=" + b,
+            );
+            const ans = await response.text();
+            document.getElementById("container").innerHTML = ans;
         }
     </script>
 
